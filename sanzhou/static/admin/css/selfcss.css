@@ -1,0 +1,198 @@
+ *{
+            margin: 0;
+            padding: 0;
+            outline: none;
+            border: none;
+            box-sizing: border-box;
+        }
+        body{
+            background-image: radial-gradient(mintcream 0%, lightgray 100%);
+        }
+        /*navigation*/
+        ul,li{
+            list-style: none;
+        }
+        #nav{
+            position: fixed;;
+            width: 425px;
+            margin: 10px auto auto 100px;
+            background-color: #eeeeee;
+            border: 1px solid #cccccc;
+            height: 40px;
+            line-height: 40px;
+            z-index: 20;
+        }
+        #menu>li{
+            float: left;
+        }
+        #menu>li a{
+            display: block;
+            text-decoration: none;
+            width: 140px;
+            color: #000;
+            text-align: center;
+        }
+        #menu li dl{
+            background-color: #eeeeee;
+            border: 1px solid #ccc;
+            width: 140px;
+            cursor: pointer;
+        }
+        #menu li>a:hover{
+            color: #ccc;
+        }
+        #menu li dl dt{
+            border-bottom: 1px solid #ccc;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: #ccc;
+        }
+        /*Data 3D visualization*/
+        h1{
+            display: table;
+            padding-top: 7%;
+            padding-left: 35%;
+            text-align: center;
+            text-transform: uppercase;
+            font-family: 'Anaheim', sans-serif;
+            font-size:4em;
+            font-weight: 400;
+            text-shadow: 0 1px white,0 2px black;
+        }
+        .container{
+            padding-top: 5%;
+            width: 210px;
+            height: 140px;
+            position: relative;
+            perspective: 500px;
+        }
+        #carousel{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            animation: rotation 20s infinite linear;
+        }
+        #carousel:hover{
+            animation-play-state: paused;
+        }
+        #carousel figure{
+            display: block;
+            position: absolute;
+            width: 186px;
+            height: 116px;
+            left: 10px;
+            top: 10px;
+            background: black;
+            overflow: hidden;
+            border: solid 5px black;
+        }
+        #carousel figure:nth-child(1){transform: rotateY(0deg) translateZ(288px);}
+        #carousel figure:nth-child(2) { transform: rotateY(60deg) translateZ(288px);}
+        #carousel figure:nth-child(3) { transform: rotateY(120deg) translateZ(288px);}
+        #carousel figure:nth-child(4) { transform: rotateY(180deg) translateZ(288px);}
+        #carousel figure:nth-child(5) { transform: rotateY(240deg) translateZ(288px);}
+        #carousel figure:nth-child(6) { transform: rotateY(300deg) translateZ(288px);}
+
+       #carousel img{
+            -webkit-filter: grayscale(1);
+            cursor: pointer;
+            transition: all .5s ease;
+            width:100%;
+            height:100%;
+        }
+       #carousel img:hover{
+            -webkit-filter: grayscale(0);
+            transform: scale(1.2,1.2);
+        }
+
+        @keyframes rotation{
+            from{
+                transform: rotateY(0deg);
+            }
+            to{
+                transform: rotateY(360deg);
+            }
+        }
+        /* carousel ads */
+        .carousel {
+            height: 500px;
+            margin-top: 30%;
+            margin-bottom: 40px;
+        }
+
+        .carousel .item {
+            height: 500px;
+            background-color: #000;
+        }
+
+        .carousel .item img {
+            width: 100%;
+        }
+
+        .carousel-caption p {
+            margin-bottom: 20px;
+            font-size: 20px;
+            line-height: 1.8;
+        }
+        /*bussiness infos*/
+        #fifthBlock {
+            position: relative;
+            justify-content: center;
+            background-color: #cccccc;
+            color: white;
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 1920px;
+            z-index: 0;
+            overflow: hidden;
+            margin-bottom: 30px; }
+
+        #fifthBlock h3 {
+            color: white; }
+
+        #info {
+            padding-top: 10px;
+            display: block;
+            margin: auto;
+            position: relative;
+            font-size: 20px; }
+
+        #info h3 {
+            font-size: 30px;
+            font-family: sans-serif; }
+
+         #talk, #visit, #links {
+            position: relative;
+            float: left;
+            padding-bottom: 100px; }
+
+        #talk {
+            width: 15%;
+            padding-right: 50px;
+            margin-left: 30%; }
+
+         #visit, #links {
+            width: 15%;
+            padding-right: 50px; }
+
+        #talk a {
+            text-decoration: none;
+            color: white; }
+
+        #links a {
+            text-decoration: none;
+            color: white; }
+
+        #socialMedia {
+            text-align: center;
+            background-color: #ccc;
+            display: block;
+            position: absolute;
+            width: 100%;
+            top: 80%; }
+
+        #socialMedia a {
+            text-decoration: none;
+            padding-left: 10px; }

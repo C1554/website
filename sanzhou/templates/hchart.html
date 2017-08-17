@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hchart</title>
+	{% load static %}
+    {% load staticfiles %}
+	<style>
+	   #bg {
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+    }
+    #bg img {
+        position:absolute;
+        left:0;
+        right:0;
+        bottom:0;
+        margin:auto;
+        width:100%;
+        height:100%;
+        z-index:-1;
+    }
+		#container{
+		      padding-top: 7%;
+		}
+		#container2{
+		      padding-top: 5%;
+		      padding-bottom:5%;
+		}
+	</style>
+	<link href="{% static 'admin/css/selfcss.css'%}" rel="stylesheet">
+   <script src="{% static 'admin/js/jquery-1.8.3.min.js'%}"></script>
+	<script src="{% static 'hchart/highstock.js'%}"></script>
+	<script src="{% static 'hchart/modules/exporting.js'%}"></script>
+</head>
+<body>
+    <div id="bg">
+        <img src="{% static 'admin/img/7.jpg'%}" alt="">
+      </div>
+      <div id="nav" style="background-color:black; border-style: none;">
+      <ul id="menu">
+          <li onmouseover="showMenu(this)" onmouseout="hideMenu(this)">
+              <a href="{% url 'sanzhou:index'%}" style="color:white;">数据可视化</a>
+              <dl style="display: none">
+                  <dt><a href="#">Tableau</a></dt>
+                  <dt><a href="{% url 'sanzhou:hchart'%}">Hchart</a></dt>
+                  <dt><a href="#">Crawler</a></dt>
+              </dl>
+          </li>
+          <li onmouseover="showMenu(this)" onmouseout="hideMenu(this)">
+              <a href="#" style="color:white;">技术</a>
+              <dl style="display:none;">
+                  <dt><a href="#">java</a></dt>
+                  <dt><a href="#">C#</a></dt>
+                  <dt><a href="#">python</a></dt>
+              </dl>
+          </li>
+          <li><a href="#" style="color:white;">关于我们</a></li>
+      </ul>
+   </div>
+
+
+    <div id="container" style="min-width:400px;height:400px;"></div>
+    <div id="container2" style="min-width:400px;height:400px"></div>
+
+
+	<script>
+	$(function () {
+    var seriesOptions = [],
+        seriesCounter = 0,
+        names = ['MSFT', 'AAPL', 'GOOG'],
+        // create the chart when all data is loaded
+        createChart = function () {
+            $('#container2').highcharts('StockChart', {
+                rangeSelector: {
+                    selected: 4
+                },
+                yAxis: {
+                    labels: {
+                        formatter: function () {
+                            return (this.value > 0 ? ' + ' : '') + this.value + '%';
+                        }
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 2,
+                        color: 'silver'
+                    }]
+                },
+                plotOptions: {
+                    series: {
+                        compare: 'percent'
+                    }
+                },
+                tooltip: {
+                    pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+                    valueDecimals: 2
+                },
+                series: seriesOptions
+            });
+        };
+    $.each(names, function (i, name) {
+        $.getJSON('https://data.jianshukeji.com/jsonp?filename=json/' + name.toLowerCase() + '-c.json&callback=?',    function (data) {
+            seriesOptions[i] = {
+                name: name,
+                data: data
+            };
+            // As we're loading the data asynchronously, we don't know what order it will arrive. So
+            // we keep a counter and create the chart when all the data is loaded.
+            seriesCounter += 1;
+            if (seriesCounter === names.length) {
+                createChart();
+            }
+        });
+    });
+});
+</script>
+	<script>
+	$(function () {
+    Highcharts.setOptions({
+        global : {
+            useUTC : false
+        }
+    });
+    // Create the chart
+    $('#container').highcharts('StockChart', {
+        chart : {
+            events : {
+                load : function () {
+                    // set up the updating of the chart each second
+                    var series = this.series[0];
+                    setInterval(function () {
+                        var x = (new Date()).getTime(), // current time
+                            y = Math.round(Math.random() * 100);
+                        series.addPoint([x, y], true, true);
+                    }, 1000);
+                }
+            }
+        },
+        rangeSelector: {
+            buttons: [{
+                count: 1,
+                type: 'minute',
+                text: '1M'
+            }, {
+                count: 5,
+                type: 'minute',
+                text: '5M'
+            }, {
+                type: 'all',
+                text: 'All'
+            }],
+            inputEnabled: false,
+            selected: 0
+        },
+        title : {
+            text : 'Live random data'
+        },
+        exporting: {
+            enabled: false
+        },
+        series : [{
+            name : 'Random data',
+            data : (function () {
+                // generate an array of random data
+                var data = [], time = (new Date()).getTime(), i;
+                for (i = -999; i <= 0; i += 1) {
+                    data.push([
+                        time + i * 1000,
+                        Math.round(Math.random() * 100)
+                    ]);
+                }
+                return data;
+            }())
+        }]
+    });
+});
+</script>
+    <script type="text/javascript">
+    function showMenu(obj){
+        var secondMenu=obj.getElementsByTagName("dl")[0];
+        secondMenu.style.display="block";
+    }
+    function hideMenu(obj){
+        var secondMenu=obj.getElementsByTagName("dl")[0];
+        secondMenu.style.display="none";
+    }
+</script>
+</body>
+</html>

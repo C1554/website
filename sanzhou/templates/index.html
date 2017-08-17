@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sanzhou</title>
+    {% load static %}
+    {% load staticfiles %}
+    <link href="{% static 'admin/css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'admin/css/selfcss.css'%}" rel="stylesheet">
+
+    <script src="{% static 'admin/js/html5shiv.js'%}"></script>
+    <script src="{% static 'admin/js/respond.min.js'%}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+</head>
+<body>
+
+    <div id="nav">
+      <ul id="menu">
+          <li onmouseover="showMenu(this)" onmouseout="hideMenu(this)">
+              <a href="#">数据可视化</a>
+              <dl style="display: none">
+                  <dt><a href="#">Tableau</a></dt>
+                  <dt><a href="{% url 'sanzhou:hchart'%}">Hchart</a></dt>
+                  <dt><a href="#">Crawler</a></dt>
+              </dl>
+          </li>
+          <li onmouseover="showMenu(this)" onmouseout="hideMenu(this)">
+              <a href="#">技术</a>
+              <dl style="display:none;">
+                  <dt><a href="#">java</a></dt>
+                  <dt><a href="#">C#</a></dt>
+                  <dt><a href="#">python</a></dt>
+              </dl>
+          </li>
+          <li><a href="#">关于我们</a></li>
+      </ul>
+   </div>
+
+    <h1>Data Visualization</h1>
+   <div class="container">
+       <div id="carousel">
+           <figure><img src="{% static 'admin/img/1.jpg'%}"></figure>
+			<figure><img src="{% static 'admin/img/2.png'%}"></figure>
+			<figure><img src="{% static 'admin/img/3.png'%}"></figure>
+			<figure><img src="{% static 'admin/img/4.png'%}"></figure>
+			<figure><img src="{% static 'admin/img/5.png'%}"></figure>
+            <figure><img src="{% static 'admin/img/6.jpg'%}"></figure>
+       </div>
+   </div>
+
+    <!-- carousel -->
+   <div id="ad-carousel" class="carousel slide" data-ride="carousel">
+       <ol class="carousel-indicators">
+           <li data-target="#ad-carousel" data-slide-to="0" class="active"></li>
+           <li data-target="#ad-carousel" data-slide-to="1"></li>
+           <li data-target="#ad-carousel" data-slide-to="2"></li>
+           <li data-target="#ad-carousel" data-slide-to="3"></li>
+           <li data-target="#ad-carousel" data-slide-to="4"></li>
+       </ol>
+       <div class="carousel-inner">
+           <div class="item active">
+               <img src="{% static 'admin/img/1.jpg'%}" alt="1 slide" style="width: 100%;max-width: 1000px;height:100%;margin-left:250px">
+           </div>
+           <div class="item">
+               <img src="{% static 'admin/img/2.png'%}" alt="2 slide" style="width: 100%;max-width: 1000px;height:100%;margin-left:250px">
+           </div>
+           <div class="item">
+               <img src="{% static 'admin/img/3.png'%}" alt="3 slide" style="width: 100%;max-width: 1000px;height:100%;margin-left:250px">
+           </div>
+           <div class="item">
+               <img src="{% static 'admin/img/4.png'%}" alt="4 slide" style="width: 100%;max-width: 1000px;height:100%;margin-left:250px">
+           </div>
+           <div class="item">
+               <img src="{% static 'admin/img/5.png'%}" alt="5 slide" style="width: 100%;max-width: 1000px;height:100%;margin-left:250px">
+           </div>
+       </div>
+       <a class="left carousel-control" href="#ad-carousel" data-slide="prev"><span
+               class="glyphicon glyphicon-chevron-left"></span></a>
+       <a class="right carousel-control" href="#ad-carousel" data-slide="next"><span
+               class="glyphicon glyphicon-chevron-right"></span></a>
+   </div>
+
+    <div id="fifthBlock">
+       <div id="info">
+           <div id="talk">
+               <h3>Talk to Us</h3>
+               <p><a href="#">info@sanzhou.com</a><p>
+               <p>123 456 789 </p>
+           </div>
+           <div id="visit">
+               <h3>Visit us</h3>
+               <p>sanhou</p>
+           </div>
+           <div id="links">
+               <h3>Links</h3>
+               <p><a href="#">Twitter</a></p>
+               <p><a href="#">Linkedin</a></p>
+               <p><a href="#">Youtube</a></p>
+               <p><a href="#">Facebook</a></p>
+           </div>
+       </div>
+       <div id="socialMedia">
+           <p>sanzhou</p>
+       </div>
+   </div>
+
+<script src="{% static 'admin/js/jquery-1.8.3.min.js'%}"></script>
+<script src="{% static 'admin/js/bootstrap.min.js'%}"></script>
+<script type="text/javascript">
+    function showMenu(obj){
+        var secondMenu=obj.getElementsByTagName("dl")[0];
+        secondMenu.style.display="block";
+    }
+    function hideMenu(obj){
+        var secondMenu=obj.getElementsByTagName("dl")[0];
+        secondMenu.style.display="none";
+    }
+</script>
+</body>
+</html>
